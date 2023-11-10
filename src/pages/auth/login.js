@@ -28,7 +28,7 @@ const Page = () => {
   const handleLogin = () => {
     const state = 'login'; 
     const client_id = process.env.NEXT_PUBLIC_LINE_CLIENT_ID;
-    const redirect_uri = `https://localhost:5003/auth/line/callback/`; //`https://learn.residemy.org/auth/line/callback/`
+    const redirect_uri = `https://learn.residemy.org/auth/line/callback/`; //`https://learn.residemy.org/auth/line/callback/` `https://localhost:5003/auth/line/callback/`
     const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}&scope=openid%20profile`;
 
     // Redirect user to LINE's authorization page
