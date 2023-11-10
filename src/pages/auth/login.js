@@ -26,13 +26,13 @@ const Page = () => {
 
   // Define the login handler function
   const handleLogin = () => {
-    // const currentURL = window.location.href;
-    // const state = 'YOUR_STATE'; 
-    // const lineLoginURL = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2001533357&redirect_uri=${encodeURIComponent(currentURL)}&state=${state}`;
-    const client_id = '2001533357';
-    const redirect_uri = 'https://learn.residemy.org'
-    const lineLoginURL = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${redirect_uri}&state=login&scope=openid%20profile`;
-    window.location.href = lineLoginURL;
+    const state = 'login'; 
+    const client_id = process.env.NEXT_PUBLIC_LINE_CLIENT_ID;
+    const redirect_uri = `https://localhost:5003/auth/line/callback/`; //`https://learn.residemy.org/auth/line/callback/`
+    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}&scope=openid%20profile`;
+
+    // Redirect user to LINE's authorization page
+    window.location.href = lineAuthUrl;
   };
 
   const formik = useFormik({
@@ -83,7 +83,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Devias Kit
+          Login | Residemy
         </title>
       </Head>
       <Box
