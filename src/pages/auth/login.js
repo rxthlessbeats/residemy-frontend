@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 import Head from 'next/head';
-import NextLink from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+// import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+// import { useFormik } from 'formik';
+// import * as Yup from 'yup';
 import {
   Alert,
   Box,
@@ -28,41 +28,39 @@ const Page = () => {
   const handleLogin = () => {
     const state = 'login'; 
     const client_id = process.env.NEXT_PUBLIC_LINE_CLIENT_ID;
-    const redirect_uri = `https://learn.residemy.org/auth/line/callback/`; //`https://learn.residemy.org/auth/line/callback/` `https://localhost:5003/auth/line/callback/`
+    const redirect_uri = `${process.env.NEXT_PUBLIC_BASE_URL}/api/line-callback`;
     const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}&scope=openid%20profile`;
-
-    // Redirect user to LINE's authorization page
-    window.location.href = lineAuthUrl;
+    router.push(lineAuthUrl);
   };
 
-  const formik = useFormik({
-    initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123!',
-      submit: null
-    },
-    validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required('Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required')
-    }),
-    onSubmit: async (values, helpers) => {
-      try {
-        await auth.signIn(values.email, values.password);
-        router.push('/');
-      } catch (err) {
-        helpers.setStatus({ success: false });
-        helpers.setErrors({ submit: err.message });
-        helpers.setSubmitting(false);
-      }
-    }
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: 'demo@devias.io',
+  //     password: 'Password123!',
+  //     submit: null
+  //   },
+  //   validationSchema: Yup.object({
+  //     email: Yup
+  //       .string()
+  //       .email('Must be a valid email')
+  //       .max(255)
+  //       .required('Email is required'),
+  //     password: Yup
+  //       .string()
+  //       .max(255)
+  //       .required('Password is required')
+  //   }),
+  //   onSubmit: async (values, helpers) => {
+  //     try {
+  //       await auth.signIn(values.email, values.password);
+  //       router.push('/');
+  //     } catch (err) {
+  //       helpers.setStatus({ success: false });
+  //       helpers.setErrors({ submit: err.message });
+  //       helpers.setSubmitting(false);
+  //     }
+  //   }
+  // });
 
   const handleMethodChange = useCallback(
     (event, value) => {
@@ -111,7 +109,7 @@ const Page = () => {
               <Typography variant="h4">
                 Login
               </Typography>
-              <Typography
+              {/* <Typography
                 color="text.secondary"
                 variant="body2"
               >
@@ -125,7 +123,7 @@ const Page = () => {
                 >
                   Register
                 </Link>
-              </Typography>
+              </Typography> */}
             </Stack>
             <Tabs
               onChange={handleMethodChange}
@@ -133,7 +131,7 @@ const Page = () => {
               value={method}
             >
               <Tab
-                label="Email"
+                label="LINE"
                 value="email"
               />
               <Tab
@@ -143,8 +141,8 @@ const Page = () => {
             </Tabs>
             {method === 'email' && (
               <form
-                noValidate
-                onSubmit={formik.handleSubmit}
+                // noValidate
+                // onSubmit={formik.handleSubmit}
               >
                 {/* <Stack spacing={3}>
                   <TextField
@@ -169,8 +167,8 @@ const Page = () => {
                     type="password"
                     value={formik.values.password}
                   />
-                </Stack> */}
-                {/* <FormHelperText sx={{ mt: 1 }}>
+                </Stack>
+                <FormHelperText sx={{ mt: 1 }}>
                   Optionally you can skip.
                 </FormHelperText>
                 {formik.errors.submit && (
@@ -208,7 +206,7 @@ const Page = () => {
                 >
                   Skip authentication
                 </Button>
-                <Alert
+                {/* <Alert
                   color="primary"
                   severity="info"
                   sx={{ mt: 3 }}
@@ -216,7 +214,7 @@ const Page = () => {
                   <div>
                     You can use <b>demo@devias.io</b> and password <b>Password123!</b>
                   </div>
-                </Alert>
+                </Alert> */}
               </form>
             )}
             {method === 'phoneNumber' && (
