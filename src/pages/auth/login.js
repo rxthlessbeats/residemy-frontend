@@ -1,9 +1,6 @@
 import { useCallback, useState } from 'react';
 import Head from 'next/head';
-// import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-// import { useFormik } from 'formik';
-// import * as Yup from 'yup';
 import {
   Alert,
   Box,
@@ -24,7 +21,6 @@ const Page = () => {
   const auth = useAuth();
   const [method, setMethod] = useState('email');
 
-  // Define the login handler function
   const handleLogin = () => {
     const state = 'login'; 
     const client_id = process.env.NEXT_PUBLIC_LINE_CLIENT_ID;
@@ -32,35 +28,6 @@ const Page = () => {
     const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}&scope=openid%20profile`;
     router.push(lineAuthUrl);
   };
-
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: 'demo@devias.io',
-  //     password: 'Password123!',
-  //     submit: null
-  //   },
-  //   validationSchema: Yup.object({
-  //     email: Yup
-  //       .string()
-  //       .email('Must be a valid email')
-  //       .max(255)
-  //       .required('Email is required'),
-  //     password: Yup
-  //       .string()
-  //       .max(255)
-  //       .required('Password is required')
-  //   }),
-  //   onSubmit: async (values, helpers) => {
-  //     try {
-  //       await auth.signIn(values.email, values.password);
-  //       router.push('/');
-  //     } catch (err) {
-  //       helpers.setStatus({ success: false });
-  //       helpers.setErrors({ submit: err.message });
-  //       helpers.setSubmitting(false);
-  //     }
-  //   }
-  // });
 
   const handleMethodChange = useCallback(
     (event, value) => {
@@ -198,14 +165,14 @@ const Page = () => {
                 >
                   LOGIN WITH LINE
                 </Button>
-                <Button
+                {/* <Button
                   fullWidth
                   size="large"
                   sx={{ mt: 3 }}
                   onClick={handleSkip}
                 >
                   Skip authentication
-                </Button>
+                </Button> */}
                 {/* <Alert
                   color="primary"
                   severity="info"

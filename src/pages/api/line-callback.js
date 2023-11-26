@@ -1,9 +1,9 @@
 // pages/api/line-callback.js
+// const jwt = require('jsonwebtoken');
+// const SECRET_KEY = process.env.JWT_SECRET;
+
 export default async function handler(req, res) {
   const { code, state } = req.query;
-
-  // Verify the state parameter for security
-  // ...
 
   try {
     const params = new URLSearchParams();
@@ -28,11 +28,55 @@ export default async function handler(req, res) {
     const data = await response.json();
     const { access_token } = data;
 
-    // Use the access token to fetch user data or other operations
+    // Fetch the user profile using the access token
+    try {
+      const userProfileResponse = await fetch('https://api.line.me/v2/profile', {
+        headers: {
+          'Authorization': `Bearer ${access_token}`
+        }
+      });
 
-    res.redirect('/'); // Redirect to a main page
+      if (!userProfileResponse.ok) {
+        throw new Error('Failed to fetch user profile');
+      }
+
+      const userProfile = await userProfileResponse.json();
+      console.log(userProfile);
+
+      res.setHeader('Set-Cookie', [
+        `token=${access_token}; HttpOnly; Path=/; Max-Age=${60 * 60}`,
+        // `token=${access_token}; Path=/; Max-Age=${60 * 60}`,
+        `id=${userProfile.userId}; Path=/;`,
+        `name=${userProfile.name}; Path=/;`,
+        `pic=${userProfile.pictureUrl}; Path=/;`
+      ]);
+      res.redirect('/login-loading');
+
+      // const csrftoken = req.headers['X-CSRFToken']; 
+
+      // POST to Django to Neo4j
+      fetch('http://127.0.0.1:8000/store_line_user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({
+          userId: userProfile.userId,
+          displayName: userProfile.displayName,
+          pictureUrl: userProfile.pictureUrl
+        })
+      });
+
+    } catch (error) {
+      console.error('Error fetching user profile or storing data:', error);
+      res.redirect('/404');
+      return;
+    }
+
   } catch (error) {
     console.error('Error during LINE callback:', error);
-    res.redirect('/404'); // Redirect to an error 404 page
+    res.redirect('/404');
+    return;
   }
 }

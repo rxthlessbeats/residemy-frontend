@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import PropTypes from 'prop-types';
 import ArrowTopRightOnSquareIcon from '@heroicons/react/24/solid/ArrowTopRightOnSquareIcon';
 import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
+import { useRouter } from 'next/router';
 import {
   Box,
   Button,
@@ -15,13 +16,16 @@ import {
 } from '@mui/material';
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
-import { items } from './config';
+import { getNavItems } from './config';
 import { SideNavItem } from './side-nav-item';
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+  const router = useRouter();
+  const { userId } = router.query;
+  const navItems = getNavItems(userId);
 
   const content = (
     <Scrollbar
@@ -106,7 +110,7 @@ export const SideNav = (props) => {
               m: 0
             }}
           >
-            {items.map((item) => {
+            {navItems.map((item) => {
               const active = item.path ? (pathname === item.path) : false;
 
               return (
@@ -124,7 +128,7 @@ export const SideNav = (props) => {
           </Stack>
         </Box>
         <Divider sx={{ borderColor: 'neutral.700' }} />
-        <Box
+        {/* <Box
           sx={{
             px: 2,
             py: 3
@@ -173,7 +177,7 @@ export const SideNav = (props) => {
           >
             Pro Live Preview
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Scrollbar>
   );

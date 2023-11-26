@@ -82,10 +82,7 @@ export const AuthProvider = (props) => {
 
     if (isAuthenticated) {
       const user = {
-        id: '5e86809283e28b96d2d38537',
-        avatar: '/assets/avatars/avatar-anika-visser.png',
-        name: 'Anika Visser',
-        email: 'anika.visser@devias.io'
+        id: 'U1a47727acba4d58b751cecc37df58d66',
       };
 
       dispatch({
@@ -127,28 +124,21 @@ export const AuthProvider = (props) => {
     });
   };
 
-  const signIn = async (email, password) => {
-    if (email !== 'demo@devias.io' || password !== 'Password123!') {
-      throw new Error('Please check your email and password');
-    }
-
+  const signIn = async ({id, token}) => {
     try {
       window.sessionStorage.setItem('authenticated', 'true');
     } catch (err) {
       console.error(err);
     }
 
-    const user = {
-      id: '5e86809283e28b96d2d38537',
-      avatar: '/assets/avatars/avatar-anika-visser.png',
-      name: 'Anika Visser',
-      email: 'anika.visser@devias.io'
-    };
+    // console.log('Signing in', { id, token });
 
     dispatch({
       type: HANDLERS.SIGN_IN,
-      payload: user
+      payload: {id, token} 
     });
+  
+    sessionStorage.setItem('token', token);
   };
 
   const signUp = async (email, name, password) => {
@@ -156,8 +146,14 @@ export const AuthProvider = (props) => {
   };
 
   const signOut = () => {
+    try {
+      window.sessionStorage.setItem('authenticated', 'false');
+    } catch (err) {
+      console.error(err);
+    }
     dispatch({
-      type: HANDLERS.SIGN_OUT
+      type: HANDLERS.SIGN_OUT,
+      user: null,
     });
   };
 
