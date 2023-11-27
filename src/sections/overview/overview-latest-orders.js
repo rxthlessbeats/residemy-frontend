@@ -29,7 +29,7 @@ export const OverviewLatestOrders = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="最近上傳檔案" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
@@ -42,7 +42,7 @@ export const OverviewLatestOrders = (props) => {
                   Customer
                 </TableCell>
                 <TableCell sortDirection="desc">
-                  Date
+                  日期
                 </TableCell>
                 <TableCell>
                   Status

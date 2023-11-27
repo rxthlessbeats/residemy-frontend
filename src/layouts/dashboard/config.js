@@ -11,7 +11,7 @@ import CircleStackIcon from '@heroicons/react/24/solid/CircleStackIcon';
 
 export const getNavItems = (userId) => [
   {
-    title: 'Dashboard',
+    title: '韌學堂總覽',
     path: `/${userId}/`,
     icon: (
       <SvgIcon fontSize="small">
@@ -20,7 +20,7 @@ export const getNavItems = (userId) => [
     )
   },
   {
-    title: 'Files',
+    title: '文件庫',
     path: `/${userId}/customers`,
     icon: (
       <SvgIcon fontSize="small">
@@ -38,7 +38,7 @@ export const getNavItems = (userId) => [
   //   )
   // },
   {
-    title: 'Account',
+    title: '帳號設定',
     path: `/${userId}/account`,
     icon: (
       <SvgIcon fontSize="small">

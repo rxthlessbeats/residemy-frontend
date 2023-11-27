@@ -19,9 +19,9 @@ export const OverviewBudget = (props) => {
           <Stack spacing={1}>
             <Typography
               color="text.secondary"
-              variant="overline"
+              variant="h6"
             >
-              Budget
+              贊助資金
             </Typography>
             <Typography variant="h4">
               {value}

@@ -7,13 +7,13 @@ import { useRouter } from 'next/router';
 
 const Page = () => {
   const router = useRouter();
-  const { userId } = router.query;
-  
+  // const { userId } = router.query();
+
   return (
   <>
     <Head>
       <title>
-        Account | Residemy
+        我的帳號
       </title>
     </Head>
     <Box
@@ -23,11 +23,11 @@ const Page = () => {
         py: 8
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              Account User ID: {userId}
+              帳號設定
             </Typography>
           </div>
           <div>

@@ -56,19 +56,19 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  檔案名稱
                 </TableCell>
                 <TableCell>
-                  Email
+                  檔案格式
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   Location
+                </TableCell> */}
+                <TableCell>
+                  檔案大小
                 </TableCell>
                 <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Signed Up
+                  上傳時間
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -101,22 +101,16 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
-                        </Avatar>
                         <Typography variant="subtitle2">
                           {customer.name}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
+                      {customer.type}
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
+                      {customer.size}
                     </TableCell>
                     <TableCell>
                       {createdAt}

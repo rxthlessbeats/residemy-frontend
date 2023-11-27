@@ -22,7 +22,7 @@ export const OverviewLatestProducts = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Products" />
+      <CardHeader title="最近瀏覽知識" />
       <List>
         {products.map((product, index) => {
           const hasDivider = index < products.length - 1;
@@ -86,7 +86,7 @@ export const OverviewLatestProducts = (props) => {
           size="small"
           variant="text"
         >
-          View all
+          查看更多
         </Button>
       </CardActions>
     </Card>

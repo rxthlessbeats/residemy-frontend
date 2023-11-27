@@ -27,9 +27,9 @@ export const OverviewTasksProgress = (props) => {
             <Typography
               color="text.secondary"
               gutterBottom
-              variant="overline"
+              variant="h6"
             >
-              Task Progress
+              知識創造進度
             </Typography>
             <Typography variant="h4">
               {value}%

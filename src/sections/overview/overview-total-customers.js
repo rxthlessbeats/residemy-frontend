@@ -19,9 +19,9 @@ export const OverviewTotalCustomers = (props) => {
           <Stack spacing={1}>
             <Typography
               color="text.secondary"
-              variant="overline"
+              variant="h6"
             >
-              Total Customers
+              知識瀏覽次數
             </Typography>
             <Typography variant="h4">
               {value}

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
-import { Box, Container, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Container, Unstable_Grid2 as Grid, Stack, Typography } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { OverviewBudget } from 'src/sections/overview/overview-budget';
 import { OverviewLatestOrders } from 'src/sections/overview/overview-latest-orders';
@@ -21,10 +21,9 @@ const Page = () => {
   <>
     <Head>
       <title>
-        Overview | Devias Kit
+        我的韌學堂總覽
       </title>
     </Head>
-    <div>Welcome to your page, User {userId}</div>
     <Box
       component="main"
       sx={{
@@ -33,6 +32,12 @@ const Page = () => {
       }}
     >
       <Container maxWidth="xl">
+        <Stack spacing={3}>
+        <div>
+          <Typography variant="h4">
+            韌學堂總覽
+          </Typography>
+        </div>
         <Grid
           container
           spacing={3}
@@ -223,6 +228,7 @@ const Page = () => {
             />
           </Grid>
         </Grid>
+        </Stack>
       </Container>
     </Box>
   </>

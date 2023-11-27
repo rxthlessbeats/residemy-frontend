@@ -121,10 +121,10 @@ export const OverviewSales = (props) => {
               </SvgIcon>
             )}
           >
-            Sync
+            同步
           </Button>
         )}
-        title="Sales"
+        title="知識貢獻量"
       />
       <CardContent>
         <Chart
@@ -146,7 +146,7 @@ export const OverviewSales = (props) => {
           )}
           size="small"
         >
-          Overview
+          查看更多
         </Button>
       </CardActions>
     </Card>

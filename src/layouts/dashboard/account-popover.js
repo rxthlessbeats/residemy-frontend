@@ -3,11 +3,13 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
+import Cookies from 'js-cookie';
 
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open } = props;
   const router = useRouter();
   const auth = useAuth();
+  const name = Cookies.get('name');
 
   const handleSignOut = useCallback(
     () => {
@@ -36,13 +38,13 @@ export const AccountPopover = (props) => {
         }}
       >
         <Typography variant="overline">
-          Account
+          帳號
         </Typography>
         <Typography
           color="text.secondary"
           variant="body2"
         >
-          Anika Visser
+          {name}
         </Typography>
       </Box>
       <Divider />
@@ -57,7 +59,7 @@ export const AccountPopover = (props) => {
         }}
       >
         <MenuItem onClick={handleSignOut}>
-          Sign out
+          登出
         </MenuItem>
       </MenuList>
     </Popover>

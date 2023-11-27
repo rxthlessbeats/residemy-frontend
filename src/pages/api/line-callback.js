@@ -44,11 +44,10 @@ export default async function handler(req, res) {
       console.log(userProfile);
 
       res.setHeader('Set-Cookie', [
-        `token=${access_token}; HttpOnly; Path=/; Max-Age=${60 * 60}`,
-        // `token=${access_token}; Path=/; Max-Age=${60 * 60}`,
-        `id=${userProfile.userId}; Path=/;`,
-        `name=${userProfile.name}; Path=/;`,
-        `pic=${userProfile.pictureUrl}; Path=/;`
+        `token=${encodeURIComponent(access_token)}; HttpOnly; Path=/; Max-Age=${60 * 60}`,
+        `id=${encodeURIComponent(userProfile.userId)}; Path=/;`,
+        `name=${encodeURIComponent(userProfile.displayName)}; Path=/;`,
+        `pic=${encodeURIComponent(userProfile.pictureUrl)}; Path=/;`
       ]);
       res.redirect('/login-loading');
 
@@ -56,6 +55,7 @@ export default async function handler(req, res) {
 
       // POST to Django to Neo4j
       fetch('http://127.0.0.1:8000/store_line_user', {
+      // fetch(`${process.env.API_URL}/store_line_user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

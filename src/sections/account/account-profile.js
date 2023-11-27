@@ -8,9 +8,10 @@ import {
   Divider,
   Typography
 } from '@mui/material';
+import Cookies from 'js-cookie';
 
+const pic = Cookies.get('pic');
 const user = {
-  avatar: '/assets/avatars/avatar-anika-visser.png',
   city: 'Los Angeles',
   country: 'USA',
   jobTitle: 'Senior Developer',
@@ -29,7 +30,7 @@ export const AccountProfile = () => (
         }}
       >
         <Avatar
-          src={user.avatar}
+          src={pic}
           sx={{
             height: 80,
             mb: 2,
