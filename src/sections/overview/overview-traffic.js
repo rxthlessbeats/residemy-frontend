@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import ComputerDesktopIcon from '@heroicons/react/24/solid/ComputerDesktopIcon';
 import DeviceTabletIcon from '@heroicons/react/24/solid/DeviceTabletIcon';
 import PhoneIcon from '@heroicons/react/24/solid/PhoneIcon';
+import VideoFileIcon from '@mui/icons-material/VideoFile';
+import AudioFileIcon from '@mui/icons-material/AudioFile';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import {
   Box,
   Card,
@@ -65,17 +68,17 @@ const useChartOptions = (labels) => {
 const iconMap = {
   Desktop: (
     <SvgIcon>
-      <ComputerDesktopIcon />
+      <PictureAsPdfIcon/>
     </SvgIcon>
   ),
   Tablet: (
     <SvgIcon>
-      <DeviceTabletIcon />
+      <AudioFileIcon/>
     </SvgIcon>
   ),
   Phone: (
     <SvgIcon>
-      <PhoneIcon />
+      <VideoFileIcon/>
     </SvgIcon>
   )
 };
@@ -86,7 +89,7 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="知識檔案類型" />
+      <CardHeader title="知識喜好類型" />
       <CardContent>
         <Chart
           height={300}

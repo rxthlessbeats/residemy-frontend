@@ -96,10 +96,10 @@ const Page = () => {
                   name: 'This year',
                   data: [18, 16, 5, 8, 3, 14, 14, 16, 17, 19, 18, 20]
                 },
-                {
-                  name: 'Last year',
-                  data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
-                }
+                // {
+                //   name: 'Last year',
+                //   data: [12, 11, 4, 6, 2, 9, 9, 10, 11, 12, 13, 13]
+                // }
               ]}
               sx={{ height: '100%' }}
             />
@@ -111,7 +111,7 @@ const Page = () => {
           >
             <OverviewTraffic
               chartSeries={[63, 15, 22]}
-              labels={['Desktop', 'Tablet', 'Phone']}
+              labels={['PDF', 'AUDIO', 'VIDEO']}
               sx={{ height: '100%' }}
             />
           </Grid>
@@ -164,65 +164,47 @@ const Page = () => {
             <OverviewLatestOrders
               orders={[
                 {
-                  id: 'f69f88012978187a6c12897f',
-                  ref: 'DEV1049',
-                  amount: 30.5,
-                  customer: {
-                    name: 'Ekaterina Tankova'
-                  },
-                  createdAt: 1555016400000,
-                  status: 'pending'
+                  id: '5e887ac47eed253091be10cb',
+                  createdAt: subDays(subHours(now, 7), 1).getTime(),
+                  name: 'UNISON_analysis_to_model_and_reduce_step',
+                  type: 'pdf',
+                  size: '8.9MB'
                 },
                 {
-                  id: '9eaa1c7dd4433f413c308ce2',
-                  ref: 'DEV1048',
-                  amount: 25.1,
-                  customer: {
-                    name: 'Cao Yu'
-                  },
-                  createdAt: 1555016400000,
-                  status: 'delivered'
+                  "id": "5e887b209c28ac3dd97f6db5",
+                  "createdAt": subDays(subHours(now, 1), 2).getTime(),
+                  "name": "Melodic_Tune_238",
+                  "type": "mp3",
+                  "size": "5.2MB"
                 },
                 {
-                  id: '01a5230c811bd04996ce7c13',
-                  ref: 'DEV1047',
-                  amount: 10.99,
-                  customer: {
-                    name: 'Alexa Richardson'
-                  },
-                  createdAt: 1554930000000,
-                  status: 'refunded'
+                  "id": "5e887b7602bdbc4dbb234b27",
+                  "createdAt": subDays(subHours(now, 4), 2).getTime(),
+                  "name": "Data_Insight_764",
+                  "type": "pdf",
+                  "size": "3.7MB"
                 },
                 {
-                  id: '1f4e1bd0a87cea23cdb83d18',
-                  ref: 'DEV1046',
-                  amount: 96.43,
-                  customer: {
-                    name: 'Anje Keizer'
-                  },
-                  createdAt: 1554757200000,
-                  status: 'pending'
+                  "id": "5e86809283e28b96d2d38537",
+                  "createdAt": subDays(subHours(now, 11), 2).getTime(),
+                  "name": "Rhythmic_Journey_591",
+                  "type": "mp3",
+                  "size": "8.1MB"
                 },
                 {
-                  id: '9f974f239d29ede969367103',
-                  ref: 'DEV1045',
-                  amount: 32.54,
-                  customer: {
-                    name: 'Clarke Gillebert'
-                  },
-                  createdAt: 1554670800000,
-                  status: 'delivered'
+                  "id": "5e86805e2bafd54f66cc95c3",
+                  "createdAt": subDays(subHours(now, 7), 3).getTime(),
+                  "name": "Project_Overview_302",
+                  "type": "pdf",
+                  "size": "4.4MB"
                 },
                 {
-                  id: 'ffc83c1560ec2f66a1c05596',
-                  ref: 'DEV1044',
-                  amount: 16.76,
-                  customer: {
-                    name: 'Adam Denisov'
-                  },
-                  createdAt: 1554670800000,
-                  status: 'delivered'
-                }
+                  "id": "5e887a1fbefd7938eea9c981",
+                  "createdAt": subDays(subHours(now, 5), 4).getTime(),
+                  "name": "Harmonic_Series_489",
+                  "type": "mp3",
+                  "size": "6.3MB"
+                },
               ]}
               sx={{ height: '100%' }}
             />

@@ -11,6 +11,7 @@ import {
 import Cookies from 'js-cookie';
 
 const pic = Cookies.get('pic');
+const name = Cookies.get('name');
 const user = {
   city: 'Los Angeles',
   country: 'USA',
@@ -41,19 +42,19 @@ export const AccountProfile = () => (
           gutterBottom
           variant="h5"
         >
-          {user.name}
+          {name}
         </Typography>
         <Typography
           color="text.secondary"
           variant="body2"
         >
-          {user.city} {user.country}
+          一般使用者
         </Typography>
         <Typography
           color="text.secondary"
           variant="body2"
         >
-          {user.timezone}
+          國立清華大學
         </Typography>
       </Box>
     </CardContent>

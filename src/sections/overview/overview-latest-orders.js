@@ -36,16 +36,16 @@ export const OverviewLatestOrders = (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  Order
+                  檔案名稱
                 </TableCell>
                 <TableCell>
-                  Customer
+                  檔案格式
+                </TableCell>
+                <TableCell>
+                  檔案大小
                 </TableCell>
                 <TableCell sortDirection="desc">
-                  日期
-                </TableCell>
-                <TableCell>
-                  Status
+                  上傳日期
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -59,18 +59,19 @@ export const OverviewLatestOrders = (props) => {
                     key={order.id}
                   >
                     <TableCell>
-                      {order.ref}
+                      {order.name}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                      {order.type}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {order.size}
                     </TableCell>
                     <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
+                      {/* <SeverityPill color={statusMap[order.status]}>
                         {order.status}
-                      </SeverityPill>
+                      </SeverityPill> */}
+                      {createdAt}
                     </TableCell>
                   </TableRow>
                 );

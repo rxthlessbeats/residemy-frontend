@@ -10,6 +10,7 @@ import {
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
+import Cookies from 'js-cookie';
 
 const states = [
   {
@@ -31,13 +32,14 @@ const states = [
 ];
 
 export const AccountProfileDetails = () => {
+  const name = Cookies.get('name');
   const [values, setValues] = useState({
-    firstName: 'Anika',
-    lastName: 'Visser',
-    email: 'demo@devias.io',
+    firstName: name,
+    // lastName: 'Visser',
+    email: '',
     phone: '',
-    state: 'los-angeles',
-    country: 'USA'
+    // state: 'los-angeles',
+    country: '國立清華大學'
   });
 
   const handleChange = useCallback(
@@ -65,8 +67,8 @@ export const AccountProfileDetails = () => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          subheader="編輯你的個人資料"
+          title="個人資料"
         />
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
@@ -80,15 +82,15 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  helperText="Please specify the first name"
-                  label="First name"
-                  name="firstName"
+                  // helperText="Please specify the first name"
+                  label="姓名/暱稱"
+                  name="Name"
                   onChange={handleChange}
                   required
                   value={values.firstName}
                 />
               </Grid>
-              <Grid
+              {/* <Grid
                 xs={12}
                 md={6}
               >
@@ -100,14 +102,14 @@ export const AccountProfileDetails = () => {
                   required
                   value={values.lastName}
                 />
-              </Grid>
+              </Grid> */}
               <Grid
                 xs={12}
                 md={6}
               >
                 <TextField
                   fullWidth
-                  label="Email Address"
+                  label="電子郵件"
                   name="email"
                   onChange={handleChange}
                   required
@@ -120,7 +122,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="Phone Number"
+                  label="電話號碼"
                   name="phone"
                   onChange={handleChange}
                   type="number"
@@ -133,14 +135,14 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="Country"
-                  name="country"
+                  label="機構"
+                  name="University"
                   onChange={handleChange}
                   required
                   value={values.country}
                 />
               </Grid>
-              <Grid
+              {/* <Grid
                 xs={12}
                 md={6}
               >
@@ -163,7 +165,7 @@ export const AccountProfileDetails = () => {
                     </option>
                   ))}
                 </TextField>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </CardContent>

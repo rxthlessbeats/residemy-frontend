@@ -48,7 +48,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Residemy
+          登入 | Residemy
         </title>
       </Head>
       <Box
