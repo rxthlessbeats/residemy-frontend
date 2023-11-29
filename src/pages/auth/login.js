@@ -25,7 +25,8 @@ const Page = () => {
     const state = 'login'; 
     const client_id = process.env.NEXT_PUBLIC_LINE_CLIENT_ID;
     const redirect_uri = `${process.env.NEXT_PUBLIC_BASE_URL}/api/line-callback`;
-    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}&scope=openid%20profile`;
+    const BOT_PROMPT = 'aggressive';
+    const lineAuthUrl = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&bot_prompt=${BOT_PROMPT}&state=${state}&scope=profile%20openid%20email`;
     router.push(lineAuthUrl);
   };
 

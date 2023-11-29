@@ -66,17 +66,17 @@ const useChartOptions = (labels) => {
 };
 
 const iconMap = {
-  Desktop: (
+  PDF: (
     <SvgIcon>
       <PictureAsPdfIcon/>
     </SvgIcon>
   ),
-  Tablet: (
+  AUDIO: (
     <SvgIcon>
       <AudioFileIcon/>
     </SvgIcon>
   ),
-  Phone: (
+  VIDEO: (
     <SvgIcon>
       <VideoFileIcon/>
     </SvgIcon>

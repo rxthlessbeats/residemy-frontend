@@ -33,13 +33,16 @@ const states = [
 
 export const AccountProfileDetails = () => {
   const name = Cookies.get('name');
+  const email = Cookies.get('email');
   const [values, setValues] = useState({
     firstName: name,
     // lastName: 'Visser',
-    email: '',
+    email: email,
     phone: '',
     // state: 'los-angeles',
-    country: '國立清華大學'
+    country: '',
+    bio: '',
+    learn: '',
   });
 
   const handleChange = useCallback(
@@ -136,10 +139,33 @@ export const AccountProfileDetails = () => {
                 <TextField
                   fullWidth
                   label="機構"
-                  name="University"
+                  name="org"
                   onChange={handleChange}
-                  required
                   value={values.country}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  label="個人簡介"
+                  name="Bio"
+                  onChange={handleChange}
+                  value={values.bio}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  label="我想在韌學堂學習的知識"
+                  name="learn"
+                  onChange={handleChange}
+                  value={values.learn}
                 />
               </Grid>
               {/* <Grid

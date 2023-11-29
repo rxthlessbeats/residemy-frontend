@@ -21,7 +21,7 @@ export const OverviewTotalCustomers = (props) => {
               color="text.secondary"
               variant="h6"
             >
-              知識瀏覽次數
+              目前會員人數
             </Typography>
             <Typography variant="h4">
               {value}

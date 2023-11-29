@@ -127,13 +127,14 @@ export const OverviewSales = (props) => {
         title="知識貢獻量"
       />
       <CardContent>
-        <Chart
+        <img src="/assets/wordcloud.png" style={{ height: '100%', width: '100%' }}></img>
+        {/* <Chart
           height={350}
           options={chartOptions}
           series={chartSeries}
           type="bar"
           width="100%"
-        />
+        /> */}
       </CardContent>
       <Divider />
       <CardActions sx={{ justifyContent: 'flex-end' }}>

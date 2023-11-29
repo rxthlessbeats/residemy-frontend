@@ -147,40 +147,6 @@ export const Layout = (props) => {
             一個創造和學習知識的價值共創平台
           </Typography>
           <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            {/* <Paper 
-              elevation={3} 
-              sx={{ 
-                borderRadius: '10px', 
-                height: '250px', 
-                width: '250px',
-                opacity: fade ? 1 : 0,
-                transition: 'opacity 1s',
-                textAlign: 'center',
-                borderRadius: '10px'
-              }}> 
-              <img
-                src={currentProf.src}
-                alt="Prof"
-                style={{
-                  height: '100%',
-                  width: '100%',
-                  borderRadius: '10px',
-                  // opacity: fade ? 1 : 0,
-                  // transition: 'opacity 1s'
-                }}
-              />
-            </Paper>
-            <Box margin={3}></Box>
-            <Typography 
-              align="center" 
-              variant="subtitle1" 
-              sx={{
-                opacity: fade ? 1 : 0,
-                transition: 'opacity 1s',
-                width: '80vh',
-              }}>
-              {currentProf.description}
-            </Typography> */}
             <Card 
               sx={{  
                 opacity: fade ? 1 : 0,
@@ -189,7 +155,12 @@ export const Layout = (props) => {
                 height: '77vh'
               }}>
               <CardMedia
-                sx={{width: '100%', height: '350px'}}
+                sx={{
+                  opacity: fade ? 1 : 0,
+                  transition: 'opacity 1s',
+                  width: '100%', 
+                  height: '350px'
+                }}
                 image={currentProf.src}
                 title="Prof"
               />

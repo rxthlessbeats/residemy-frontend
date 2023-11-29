@@ -26,29 +26,51 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const { access_token } = data;
+    console.log(data);
+    const { access_token, id_token } = data;
 
     // Fetch the user profile using the access token
     try {
-      const userProfileResponse = await fetch('https://api.line.me/v2/profile', {
+      // const userProfileResponse = await fetch('https://api.line.me/v2/profile', {
+      //   headers: {
+      //     'Authorization': `Bearer ${access_token}`
+      //   }
+      // });
+
+      // if (!userProfileResponse.ok) {
+      //   throw new Error('Failed to fetch user profile');
+      // }
+
+      // const userProfile = await userProfileResponse.json();
+      // console.log(userProfile);
+
+      const body = new URLSearchParams();
+      body.append('id_token', id_token);
+      body.append('client_id', process.env.NEXT_PUBLIC_LINE_CLIENT_ID);
+
+      const idTokenResponse = await fetch('https://api.line.me/oauth2/v2.1/verify', {
+        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${access_token}`
-        }
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: body
       });
 
-      if (!userProfileResponse.ok) {
-        throw new Error('Failed to fetch user profile');
+      if (!idTokenResponse.ok) {
+        throw new Error('Failed to fetch detailed user profile');
       }
 
-      const userProfile = await userProfileResponse.json();
-      console.log(userProfile);
+      const userProfileDetailed = await idTokenResponse.json();
+      console.log(userProfileDetailed);
 
       res.setHeader('Set-Cookie', [
         `token=${encodeURIComponent(access_token)}; HttpOnly; Path=/; Max-Age=${60 * 60}`,
-        `id=${encodeURIComponent(userProfile.userId)}; Path=/;`,
-        `name=${encodeURIComponent(userProfile.displayName)}; Path=/;`,
-        `pic=${encodeURIComponent(userProfile.pictureUrl)}; Path=/;`
+        `id=${encodeURIComponent(userProfileDetailed.sub)}; Path=/;`,
+        `name=${encodeURIComponent(userProfileDetailed.name)}; Path=/;`,
+        `pic=${encodeURIComponent(userProfileDetailed.picture)}; Path=/;`,
+        `email=${encodeURIComponent(userProfileDetailed.email)}; Path=/;`
       ]);
+
       res.redirect('/login-loading');
 
       // const csrftoken = req.headers['X-CSRFToken']; 
@@ -62,9 +84,10 @@ export default async function handler(req, res) {
           // 'X-CSRFToken': csrftoken,
         },
         body: JSON.stringify({
-          userId: userProfile.userId,
-          displayName: userProfile.displayName,
-          pictureUrl: userProfile.pictureUrl
+          userId: userProfileDetailed.sub,
+          displayName: userProfileDetailed.name,
+          pictureUrl: userProfileDetailed.picture,
+          email: userProfileDetailed.email,
         })
       });
 
