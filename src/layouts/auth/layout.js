@@ -6,6 +6,21 @@ import React, { useEffect, useState } from 'react';
 // import { Logo } from 'src/components/logo';
 // TODO: Change subtitle text
 
+const preloadImage = (src) => {
+  const img = new Image();
+  img.src = src;
+};
+
+const preloadAllProfsImages = () => {
+  const profs = profsInfo();
+  profs.forEach(prof => {
+    preloadImage(prof.src);
+  });
+};
+
+preloadAllProfsImages();
+
+
 const shuffleArray = (array) => {
   let currentIndex = array.length, randomIndex;
 
@@ -156,8 +171,6 @@ export const Layout = (props) => {
               }}>
               <CardMedia
                 sx={{
-                  opacity: fade ? 1 : 0,
-                  transition: 'opacity 1s',
                   width: '100%', 
                   height: '350px'
                 }}
