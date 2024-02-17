@@ -17,6 +17,7 @@ export function createPalette() {
       paper: common.white
     },
     divider: '#F2F4F7',
+    darkdivider: alpha(common.black, 0.1),
     error,
     info,
     mode: 'light',

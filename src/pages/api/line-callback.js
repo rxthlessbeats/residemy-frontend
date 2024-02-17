@@ -76,8 +76,8 @@ export default async function handler(req, res) {
       // const csrftoken = req.headers['X-CSRFToken']; 
 
       // POST to Django to Neo4j
-      fetch('http://127.0.0.1:5005/store_line_user', {
-      // fetch(`${process.env.API_URL}/store_line_user`, {
+      // fetch('http://127.0.0.1:5005/store_line_user', {
+      fetch(`${process.env.API_URL}/api/store_line_user/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

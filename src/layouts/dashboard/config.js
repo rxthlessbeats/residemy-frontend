@@ -8,6 +8,7 @@ import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
 import { SvgIcon } from '@mui/material';
 import CircleStackIcon from '@heroicons/react/24/solid/CircleStackIcon';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export const getNavItems = (userId) => [
   {
@@ -21,22 +22,22 @@ export const getNavItems = (userId) => [
   },
   {
     title: '文件庫',
-    path: `/${userId}/customers`,
+    path: `/${userId}/documents`,
     icon: (
       <SvgIcon fontSize="small">
         <CircleStackIcon />
       </SvgIcon>
     )
   },
-  // {
-  //   title: 'Companies',
-  //   path: `/${userId}/companies`,
-  //   icon: (
-  //     <SvgIcon fontSize="small">
-  //       <ShoppingBagIcon />
-  //     </SvgIcon>
-  //   )
-  // },
+  {
+    title: '研討會文件',
+    path: `/${userId}/forums`,
+    icon: (
+      <SvgIcon fontSize="small">
+        <ArticleIcon />
+      </SvgIcon>
+    )
+  },
   {
     title: '帳號設定',
     path: `/${userId}/account`,
