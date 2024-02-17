@@ -28,6 +28,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+
 const Page = () => {
   const router = useRouter();
   const { pptId, doc_url, title, forumTitle, } = router.query;
@@ -79,6 +83,10 @@ const Page = () => {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+
   return (
     <>
       <Head>
@@ -117,14 +125,16 @@ const Page = () => {
                     backgroundColor: alpha(neutral[900], 0.03), 
                     alignItems: 'center', 
                     justifyContent: 'flex-start', 
-                    maxHeight: '70vh'}}>
+                    maxHeight: '70vh'
+                  }}>
                   <Document file={`${process.env.NEXT_PUBLIC_API_URL}${doc_url}`} onLoadSuccess={onDocumentLoadSuccess}>
                     {Array.from({ length: numPages }, (_, index) => (
                       <Paper key={index} elevation={2} sx={{ my: 2, width: 'auto', }}>
                         <PdfPage 
                           pageNumber={index + 1} 
-                          scale={0.9} 
-                          width={fullScreen ? window.innerWidth : undefined}/>
+                          scale={isMobile ? 0.35 : 0.9} 
+                          width={fullScreen ? window.innerWidth : undefined}
+                        />
                       </Paper>
                     ))}
                   </Document>
