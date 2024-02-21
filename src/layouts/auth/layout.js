@@ -6,21 +6,6 @@ import React, { useEffect, useState } from 'react';
 // import { Logo } from 'src/components/logo';
 // TODO: Change subtitle text
 
-const preloadImage = (src) => {
-  const img = new Image();
-  img.src = src;
-};
-
-const preloadAllProfsImages = () => {
-  const profs = profsInfo();
-  profs.forEach(prof => {
-    preloadImage(prof.src);
-  });
-};
-
-preloadAllProfsImages();
-
-
 const shuffleArray = (array) => {
   let currentIndex = array.length, randomIndex;
 
@@ -37,7 +22,7 @@ const shuffleArray = (array) => {
   }
 
   return array;
-}
+};
 
 export const Layout = (props) => {
   const { children } = props;
@@ -56,6 +41,23 @@ export const Layout = (props) => {
       setCurrentProfIndex(currentProfIndex + 1);
     }
   };
+
+  // Preload images on the client side
+  useEffect(() => {
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+    };
+
+    const preloadAllProfsImages = () => {
+      const profs = profsInfo();
+      profs.forEach(prof => {
+        preloadImage(prof.src);
+      });
+    };
+
+    preloadAllProfsImages();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
