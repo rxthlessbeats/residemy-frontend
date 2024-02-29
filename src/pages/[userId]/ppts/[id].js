@@ -58,17 +58,31 @@ const Page = () => {
 
   const pdfViewerRef = useRef(null);
 
+  function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }  
+
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      pdfViewerRef.current.requestFullscreen().catch((err) => {
-        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-      });
+      openFullscreen(pdfViewerRef.current);
       setFullScreen(true);
     } else {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { /* Safari */
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { /* IE11 */
+        document.msExitFullscreen();
+      }
       setFullScreen(false);
     }
-  };
+  };  
 
   useEffect(() => {
     const handleFullscreenChange = () => {
