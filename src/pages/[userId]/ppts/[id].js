@@ -29,7 +29,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const Page = () => {
@@ -98,7 +98,7 @@ const Page = () => {
   }, []);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 
   return (
@@ -146,7 +146,7 @@ const Page = () => {
                       <Paper key={index} elevation={2} sx={{ my: 2, width: 'auto', }}>
                         <PdfPage 
                           pageNumber={index + 1} 
-                          scale={isMobile ? 0.35 : 0.9} 
+                          scale={0.9} 
                           width={fullScreen ? window.innerWidth : undefined}
                         />
                       </Paper>
